@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+        }
+
+        .header {
+            background-color: rgba(255, 0, 0, 0.295);
+            
+            color: #fff;
+            text-align: center;
+            padding: 20px 0;
+            font-size: 24px;
+        }
+        h1 {
+            font-size: 80px;
+            margin: 0 0 20px;
+        }
+        h2 {
+            color: #fdebeb;
+        }
+        .container {
+            text-align: center;
+            margin: 20px;
+        }
+
+        .game-container {
+            position: relative;
+            width: 300px;
+            height: 300px;
+            border: 2px solid #000;
+        }
+
+        .player {
+            position: absolute;
+            width: 40px;
+            height: 40px;
+            background-color: #007bff;
+            border-radius: 50%;
+            cursor: pointer;
+        }
+
+        .tomatoes {
+            position: absolute;
+            width: 30px;
+            height: 30px;
+            background-color: #ff5733;
+            border-radius: 50%;
+        }
+
+        .button-62 {
+            background: linear-gradient(to bottom right, #EF4765, #FF9A5A);
+            border: 0;
+            border-radius: 12px;
+            color: #FFFFFF;
+            cursor: pointer;
+            display: inline-block;
+            font-family: -apple-system, system-ui, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            font-size: 16px;
+            font-weight: 500;
+            line-height: 2.5;
+            outline: transparent;
+            padding: 0 1rem;
+            text-align: center;
+            text-decoration: none;
+            transition: box-shadow .2s ease-in-out;
+            user-select: none;
+            -webkit-user-select: none;
+            touch-action: manipulation;
+            white-space: nowrap;
+        }
+    </style>
+</head>
+
+<script>
+    var quest = "";
+    var data = 0;
+    var solution = -1;
+    var timerInterval;
+    var speedFactor = 1; // Adjust this value to control the speed of the timer
+
+    let newgame = function (x) {
+        document.getElementById("in").style.display = "block";
+        startup();
+        clearInterval(timerInterval); // Clear the existing timer
+        sec = 20; // Reset the timer to 20 seconds
+        startTimer(); // Start the timer for the new game
+    }
+    let handleInput = function (x) {
+
+        let inp = document.getElementById("input");
+        var note = document.getElementById("note");
+        if (inp.value == solution) {
+            note.innerHTML = 'Correct! Level up! -  <button class="button-62" onClick="newgame()" >Next Level?</button>';
+        } else {
+            note.innerHTML = "Not Correct!";
+        }
+    }
+
+
+    let startQuest = function (data) {
+        var parsed = JSON.parse(data);
+        quest = parsed.question;
+        solution = parsed.solution;
+        let img = document.getElementById("quest");
+        img.src = quest;
+        let note = document.getElementById("note");
+        note.innerHTML = "Game is ready.";
+    }
+
+    let fetchText = async function () {
+        let response = await fetch('https://marcconrad.com/uob/tomato/api.php');
+        let data = await response.text();
+        startQuest(data);
+    }
+
+    let startup = function () {
+        fetchText();
+    }
+</script>
+
+<body background="image/Back.png">
+
+    <div class="header">
+        <h1>Tomato Game - Hard Level</h1>
+    </div>
+
+
+    <div id="easy" style="margin: 20px;">
+        <div id="safeTimer">
+            <br>
+            <h2 id="timer">Time Remaining: <span id="time-left"></span> <span id="safeTimerDisplay">00:30</span></h2>
+        </div>
+
+        <br>
+        <script>
+            startup();
+        </script>
+
+        <img id="quest" />
+        <div>
+            <h2 class="h2-62" id="note"></h2>
+
+            <h2 id="in">Enter the missing digit: <span><input class="button-62" id="input" onchange="handleInput()"
+                        type="number" step="1" min="0" max="9"></span> </h2>
+        </div>
+    </div>
+</body>
+
+<script>
+    var sec = 40;
+
+    function startTimer() {
+        timerInterval = setInterval(function () {
+            document.getElementById('safeTimerDisplay').innerHTML = '00:' + sec;
+            sec--;
+            if (sec < 0) {
+                clearInterval(timerInterval);
+                document.getElementById("in").style.display = "none";
+                document.getElementById("note").innerHTML = '<span>Time is over</span> <span onClick="newgame()" class="button-62">Next game </span>';
+                --chance;
+            }
+        }, 1000);
+    }
+    var timer = setInterval(function () {
+        document.getElementById('safeTimerDisplay').innerHTML = '00:' + sec;
+        sec--;
+        if (sec < 0) {
+            clearInterval(timer);
+            document.getElementById("in").style.display = "none";
+            document.getElementById("note").innerHTML ='<span>Time is over</span> <span onClick="newgame()" class="button-62">Next game </span>';
+            --chance;
+        }
+    }, 1000);
+
+</script>
+
+</html>

@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Levels - Tomato Game</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+        }
+
+        .header {
+            background-color: rgba(255, 0, 0, 0.295);
+            
+            color: #fff;
+            text-align: center;
+            padding: 20px 0;
+            font-size: 24px;
+        }
+        .container {
+            margin: 150px;
+        }
+
+
+
+        .active {
+            display: inline-block;
+            margin: 10px;
+            padding: 10px 20px;
+            background-color: #007bff52;
+            color: #722828;
+            text-decoration: none;
+            font-size:x-large;
+            border-radius: 4px;
+            size: 100px;
+        }
+        .active:hover {
+            background-color: #2980b9;
+        }
+    </style>
+</head>
+
+<body background="image/Back.png">
+    <div class="header">
+        <h1>Tomato Game</h1>
+    </div>
+    <div class="container">
+
+            <button><a class="active" href="Easy.html" onclick="changeLevel()">
+                <img src="image/Easy.jpg" width="250px" height="175px"><br>
+                Easy</a></button>
+            <button><a class="active" href="medium.html" onclick="changeLevel()">
+                <img src="image/Medium.jpg" width="250px" height="175px"><br>Medium</a></button>
+            <button><a class="active" href="hard.html" onclick="changeLevel()">
+                <img src="image/Hard.jpg" width="250px" height="175px"><br>Hard</a></button>
+        
+    </div>
+</body>
+
+<script>
+    document.getElementById("easy").addEventListener("click", function() {
+        localStorage.clear();
+        var dataToTransfer = 1;
+        localStorage.setItem("dataKey", dataToTransfer);
+        window.location.href = "dashboard.php";
+    });
+
+    document.getElementById("medium").addEventListener("click", function() {
+        localStorage.clear();
+        var dataToTransfer = 2;
+        localStorage.setItem("dataKey", dataToTransfer);
+        window.location.href = "dashboard.php";
+    });
+
+    document.getElementById("hard").addEventListener("click", function() {
+        localStorage.clear();
+        var dataToTransfer = 3;
+        localStorage.setItem("dataKey", dataToTransfer);
+        window.location.href = "dashboard.php";
+    });
+</script>
+
+</html>

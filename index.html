@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login Page</title>
+    <style>
+        *{
+            margin: 0;
+        }
+        
+        .container {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            right: 50px;
+            height: 49lvh;
+        }
+
+        .login-container {
+            background-color: #ffffff65;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+            padding: 20px;
+            width: 300px;
+            text-align: center;
+        }
+
+        h1 {
+            font-size: 80px;
+            margin: 0 0 20px;
+        }
+
+        label {
+            display: block;
+            font-weight: 600;
+        }
+
+        input[type="text"],
+        input[type="password"] {
+            width: 80%;
+            padding: 10px;
+            margin: 8px 0;
+            color: #030303;
+            border: 1px solid #cccccc28;
+            border-radius: 4px;
+        }
+        input[type="submit"] {
+        background-color: rgb(138, 212, 128)
+        }
+
+        button {
+            background-color: #007bff;
+            color: #050303;
+            border: none;
+            border-radius: 4px;
+            padding: 10px 20px;
+            cursor: pointer;
+        }
+
+        .header {
+            background-color: rgba(255, 0, 0, 0.295);
+            
+            color: #fff;
+            text-align: center;
+            padding: 20px 0;
+            font-size: 24px;
+        }
+    </style>
+</head>
+
+<body background="image/Back.png">
+    <div class="header">
+        <h1>Tomato Game</h1>
+    </div>
+    <div class="container">
+        <div class="login-container">
+            <h1>Login</h1>
+            <form action="login.php" method="post" id="login-form">
+                <label for="username">Username</label>
+                <input type="text" id="username" name="username" required>
+                <label for="password">Password</label>
+                <input type="password" id="password" name="password" required>
+                <input type="submit" value="Login">
+                <a href="Register.html">Sign up!</a>
+            </form>
+        </div>
+    </div>
+</body>
+<!-- <script>
+    document.getElementById("login-form").addEventListener("submit", function (event) {
+        event.preventDefault();
+        // Replace the following with your login logic
+        const username = document.getElementById("username").value;
+        const password = document.getElementById("password").value;
+
+        // Example login check (replace with your own authentication logic)
+        if (username === "yourUsername" && password === "yourPassword") {
+            alert("Login successful! Redirect to the dashboard.");
+            // You can add a redirection here if needed.
+        } else {
+            alert("Login failed. Please check your credentials.");
+        }
+    });
+</script> -->
+
+</html>

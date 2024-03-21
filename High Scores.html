@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>High Scores - Tomato Scratch Game</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+        }
+        h1 {
+            font-size: 80px;
+            margin: 0 0 20px;
+            font-family: Arial, sans-serif;
+        }
+        .header {
+            background-color: rgba(255, 0, 0, 0.295);
+            
+            color: #fff;
+            text-align: center;
+            padding: 20px 0;
+            font-size: 24px;
+        }
+        .container {
+            text-align: center;
+            margin: 20px;
+        }
+        table {
+            width: 80%;
+            margin: 20px auto;
+            border-collapse: collapse;
+        }
+        th, td {
+            padding: 12px;
+            border: 1px solid #e69090;
+            text-align: center;
+            font-size: x-large ;
+            font-weight: bold;
+        }
+        th {
+            background-color: #cf5d5d;
+            color: #fcf6f6;
+        }
+    </style>
+</head>
+<body background="image/Back.png">
+    <div class="header">
+        <h1>Tomato Game</h1>
+    </div>
+    <div class="container">
+        <table>
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Score</th>
+                </tr>
+            </thead>
+            <tbody id="highScoresTableBody">
+                <!-- High scores will be dynamically added here using JavaScript -->
+            </tbody>
+        </table>
+    </div>
+
+    <script>
+        // Example high scores data (replace this with your actual high scores data)
+        const highScores = [
+            { name: "sumail", score: 230},
+            { name: "aaroopan", score: 220 },
+            { name: "sasha", score: 210 },
+            // Add more high scores as needed
+        ];
+
+        // Function to display high scores in the table
+        function displayHighScores() {
+            const tableBody = document.getElementById("highScoresTableBody");
+
+            // Clear existing table rows
+            tableBody.innerHTML = "";
+
+            // Loop through high scores and create table rows
+            highScores.forEach((score, index) => {
+                const row = document.createElement("tr");
+                const nameCell = document.createElement("td");
+                const scoreCell = document.createElement("td");
+
+                nameCell.textContent = score.name;
+                scoreCell.textContent = score.score;
+
+                row.appendChild(nameCell);
+                row.appendChild(scoreCell);
+
+                tableBody.appendChild(row);
+            });
+        }
+
+        // Display high scores when the page loads
+        displayHighScores();
+    </script>
+</body>
+</html>
+
